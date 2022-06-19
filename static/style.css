@@ -1,0 +1,337 @@
+
+body{
+    font-family: 'Inter', sans-serif;
+    line-height: 1.7;
+    background:linear-gradient(0deg, #031016a4, rgba(1, 9, 14, 0.678)), url('assets/div.jpg');
+    background-size:300%;
+    width: 100%;
+    height: 100%;
+}
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+:root{
+    --color1: #E7F2F8;
+    --color2: ;
+   
+    --font_color: #E7F2F8;
+
+    --danger: ;
+    --sucess: ;
+    --warning: ;
+    --white: #f2f6fc;
+    --btn_black: #050A30;
+    --btn_white: ;
+    
+    --container_box_shadow: 2px 0px 4px 0px #888888;
+    
+    --container_width-lg: 60%;
+    --container_width-md: 90%;
+    --container_width-sm: 94%;
+
+    --transition: all 400ms ease;
+}
+section{
+    padding-top: 2rem;
+    margin: 2rem 0 6rem 0;
+    align-items: center;
+    text-align: center;
+}
+.container{
+    width: var(--container_width-lg);
+    margin: 5px auto;
+    padding: 5px;
+    box-shadow: 2px 0px 4px 0px #888888;
+    border-radius: 2px;
+    background: var(--white);
+}
+.bookings_container{
+    display: flex;
+    text-align: left;
+    flex-direction: row;
+    gap: 20%;
+}
+h1, h2, h3, h4, h5,h6{
+    line-height: 1.2;
+    color: var(--font_color);
+}
+h1{
+    font-size: 2rem;
+    font-family: 'Patrick Hand', cursive;
+}
+h2{
+    font-size: 1.8rem;
+    font-family: 'Patrick Hand', cursive;
+}
+h3{
+    font-size: 1.4rem;
+    font-family: 'Patrick Hand', cursive;
+}
+h4{
+    font-size: 1.2rem;
+}
+p{
+    font-size: 1rem;
+}
+.btn{
+    display: inline;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background: var(--btn_black);
+    color: var(--font_color);
+    border:none;
+    border-radius:5px;
+    width: 6rem;
+}
+a{
+    font-size: 1rem;
+    text-decoration: none;
+    color: #5885AF;
+}
+a:hover{
+    color: #cfa5ff;
+}
+i{
+    font-size: 1rem;
+}
+.topnavbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow:hidden;
+    background-color: rgb(255, 255, 255);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    box-shadow: 2px 1px 6px -1px #888888;
+}
+.topnavbar li a{
+    font-size: 2rem;
+    padding: 0px 1.5rem;
+
+}
+.bottomnavbar{
+    background-color: rgb(255, 255, 255);
+    position: fixed;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    box-shadow: 2px -4px 4px -3.5px #888888;
+    list-style-type: none;
+    overflow:hidden;
+    align-items: center;
+    text-align: center;
+    width: 40%;
+    margin: 0;
+    padding: 0;
+    bottom: 91.5vh;
+    gap: 0;
+    font-size: 10px;
+    z-index: 11;
+    /* border-radius: top 20px; */
+}
+li {
+    float: right;
+}
+
+li a {
+    display: block;
+    text-align: center;
+    padding: 10px 10px;
+    text-decoration: none;
+}
+/* li:active{
+} */
+.map_container{
+    width: 100%;
+    margin-top: 50px;
+    height: 70vh;
+    background: var(--btn_black);
+}
+.form-group{
+    position: fixed;
+    top: 4rem;
+    display: flex;
+    align-items: center;
+    width: 20rem;
+}
+.form-group label{
+    color: var(--font_color);
+}
+.bottomnavbar li{
+    float:none;
+}
+.bottomnavbar li a{
+    display: flex;
+    flex-direction: column;
+}
+.navbar:any-link > a {
+    background: var(--btn_black);
+    color: var(--btn_white);
+}
+.profile_container img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.profile_container div{
+    position: relative;
+    align-items: left;
+    text-align: left;
+    margin: 20px 0;
+    border-bottom: 1px solid #ee9b00;
+}
+.profile_container h4{
+    padding: 10px 0;
+}
+.profile_container h3{
+    padding: 5px 0;
+}
+
+.form_container{
+    width: 20rem;
+    background-color: transparent;
+    box-shadow: none;
+}
+.form{
+    margin-top: 10vh;
+}
+input{
+    border-bottom: 1px solid var(--font_color);
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: var(--font_color);
+    font-size: 1.2rem;
+    width: 100%;
+    margin-bottom: 1.3rem;
+}
+.form-header{
+    padding: 2rem;
+}
+form{
+    padding: 20px;
+}
+.form-form{
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+.form-btn{
+    padding: 0 20px;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+}
+.form-btn a{
+    color: var(--font_color);
+}
+.login_btn, .register_btn{
+    font-size: 1.2rem;
+    width: 100%;
+}
+
+.swal-text{
+    text-align: center;
+}
+.swal-icon--sucess:before,
+.swal-icon--sucess:after,
+.swal-icon--sucess__jide-corners{
+    background: none !important;
+}
+.swal-buttton{
+    padding: 7px 19px;
+    border-radius: 5px;
+    background-color: #198754;
+    font-size: 12px;
+    border:  1px solid #198754;
+}
+.swal-buttton:focus{
+    box-shadow: none;
+}
+.swal-button:not([disable]):hover{
+    background: transparent;
+    color: #050A30;
+    border: 1px solid #198754;
+}
+@media screen and (max-width:1024px){
+    h1, h2, h3, h4, h5,h6{
+        line-height: 1.2;
+    }
+    h1{
+        font-size: 2rem;
+    }
+    h2{
+        font-size: 1.8rem;
+    }
+    h3{
+        font-size: 1.4rem;
+    }
+    h4{
+        font-size: 1.2rem;
+    }
+}
+@media screen and (max-width:822px){
+    h1, h2, h3, h4, h5,h6{
+        line-height: 1.2;
+    }
+    h1{
+        font-size: 1.6rem;
+    }
+    h2{
+        font-size: 1.4rem;
+    }
+    h3{
+        font-size: 1.2rem;
+    }
+    h4{
+        font-size: 1rem;
+    }
+}
+@media screen and (max-width:620px){
+    h1, h2, h3, h4, h5,h6{
+        line-height: 1.4;
+    }
+    h1{
+        font-size: 1.8rem;
+    }
+    h2{
+        font-size: 1.8rem;
+    }
+    h3{
+        font-size: 1.4rem;
+    }
+    h4{
+        font-size: 1.3rem;
+    }
+    .container{
+        width: var(--container_width-sm);
+        padding: 10px;
+    }
+    .bottomnavbar{
+        width: 100%;
+        bottom: 0;
+    }
+    input{
+        width: 100%;
+    }
+    img{
+        width: 50px;
+        height: 50px;
+    }
+    form{
+        width: 100vw;
+    }
+    .form_container{
+        width: 100vw;
+    }
+}

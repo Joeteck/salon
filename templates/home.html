@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+{% if user.is_authenticated %}
+{{user.username}}
+{% endif %}
+Dashboard
+{% endblock  %}
+{% block header %}
+    <link rel="stylesheet" type="" href="{% static 'salon.css' %}">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDt2PsxGOpwtt3hHtCqHd_UlZjtmWiMrL0&callback=initMap"></script>
+    
+{% endblock  %}
+
+    <!--=============================================google font==================================== -->
+{% block body %}
+{% include 'topnav.html' %}
+{% include 'bottomnav.html' %}
+
+<div class="map_container" id="map"></div>  
+<div class="form-group">
+    <label>Location:</label>
+    <input type="text" class="form-control" id="search_input" placeholder="Type address..." />
+</div>
+
+<section style="margin-bottom: 5rem;">
+    {% for salon in salons %}
+    <div class="container" onclick="location.href='service'">
+        <div class="salonimage">
+            <img src="{{salon.image}}" alt="">
+        </div>
+        <div class="salondetails">
+            <h3>{{salon.salonname}}</h3>
+            <h4>{{salon.address}}</h4>
+            {% comment %} {% for x in randrange(1,)  %}
+            <i class="fa-solid fa-star"></i>
+            {% endfor %} {% endcomment %}
+        </div>
+        {% comment %} <div class="favoritesalon">
+            {% comment %} <i class="fa-regular fa-heart"></i>
+            <i class="fa-solid fa-heart"></i>
+        </div> {% endcomment %}
+    </div>
+    {% endfor %}
+
+</section>
+{% endblock  %}
+    <!-- jQuery -->
+{% block scriptbottom %}
+<script>
+    x = navigator.geolocation;
+  x.getCurrentPosition(success, failure);
+  
+  function success(position){
+    var myLat = position.coords.latitude;
+    var myLong = position.coords.longitude;
+  
+    var coords = new google.maps.LatLng(myLat,myLong);
+  
+    var mapOptions =  {
+      zoom:18,
+      center: coords,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+  
+    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    var marker = new google.maps.Maker({map:map, position:coords});
+  }
+  function failure(){}
+   
+  $(document).ready(function () {
+      var autocomplete;
+      autocomplete = new google.maps.places.Autocomplete((document.getElementById('search_input')), {
+      types: ['geocode'],
+      componentRestrictions: {
+      country: "GHANA"
+    }
+  });
+    
+   google.maps.event.addListener(autocomplete, 'place_changed', function () {
+      var near_place = autocomplete.getPlace();
+   });
+  });
+</script>
+{% endblock %}

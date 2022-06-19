@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+{% comment %} <link rel="stylesheet" href="{% static 'register.css' %}"> {% endcomment %}
+<style>
+    section{
+        margin-top:30vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.4rem;
+        position:relative;
+    }
+    .container{
+        background:none;
+        border:none;
+        width:120px;
+        height:120px;
+
+    }
+    img{
+        margin:none;
+        padding:none;
+        position:relative;
+        width:100px;
+        height:100px;
+        border-radius:50%;
+    }
+</style>
+{% endblock  %}
+{% block title %}Dashboard Salon{% endblock  %}
+
+
+{% block body %}
+<ul class="navbar topnavbar">
+    <div class="dropdown">
+        <button class="dropbtn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+        <div class="dropdown-content">
+          {% comment %} <a href="">App guide</a> {% endcomment %}
+          <a href="login">logout</a>
+        </div>
+    </div>
+    {% comment %} <li class="nav-item"><a href="salonprofile"><i class="fa-solid fa-magnifying-glass"></i></a></li> {% endcomment %}
+    <li class="nav-item"><a href="nofity"><i class="fa-solid fa-bell"></i></a></li>
+</ul>
+
+<ul class="navbar bottomnavbar">
+    <li class="nav-item"><a href="salondashboard"><i class="fa-solid fa-house"></i>Home</a></li>
+    <li class="nav-item"><a href="salonbookings"><i class="fa-solid fa-book"></i>Bookings</a></li>
+    <li class="nav-item"><a href="salonprofile"><i class="fa-solid fa-user"></i>Profile</a></li>
+</ul>
+
+<section>   
+    <div class="container">
+        <a href="newservice">
+            <img src="static/assets/bg3.png" alt="">
+            <h3>Add new Service</h3>
+        </a>
+    </div>
+    <div class="container">
+        <a href="salonbookings">
+            <img src="static/assets/bg3.png" alt="">
+            <h3>View Pending Booking</h3>
+        </a>
+        
+    </div>
+    <div class="container">
+        <a href="salonprofile">
+            <img src="static/assets/bg4.jpg" alt="">
+            <h3>Profile</h3>
+        </a>
+        
+    </div>
+</section>
+{% endblock  %}

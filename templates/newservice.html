@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+<link rel="stylesheet" href="{% static 'register.css' %}">
+{% endblock  %}
+{% block title %}Add Service{% endblock  %}
+{% block body %}
+<section> 
+            
+    <div class="container">
+
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="form-header">
+                <h2>Welcome.</h2>
+                <h3>Please enter your Salon details to get started</h3>
+                {% for message in messages %}
+                {% if message.tag == 'success' %}
+                    <h6 style="color: #DE1E2B;">{{message}}</h6>
+                {% else %}
+                {% endif %}
+                {% endfor %}
+            </div>
+            <div style="width:80vw; text-align:left;">
+                {{ form.as_p }}
+            </div>
+            <div class="form-btn">
+                {% comment %} <a href="login" class="login_btn">Login</a> {% endcomment %}
+                <button class="btn register" type="submit">Submit</button>
+            </div>
+        </form>
+
+        {% for message in messages %}
+        {% if message.tags == 'success' %}
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            var m = "{{ message }}";
+            swal("Perfect !", m, "success")
+        </script>
+        {% comment %} <div class="alert alert-sucess text-center mt-5" role="alert">
+            {{ messages }}
+            <a href="salondashboard"></a>
+        </div> {% endcomment %}
+        {% endif %}
+        {% endfor %}
+    </div>
+</section>
+{% endblock  %}

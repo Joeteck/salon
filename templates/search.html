@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+{% include 'bottomnav.html' %}
+<ul class="navbar topnavbar">
+    
+    <div class="dropdown">
+        <button class="dropbtn" style="background: 	#F0FFF0;"><i class="fa-solid fa-ellipsis-vertical" style="color: 	 #696969;"></i></button>
+        <div class="dropdown-content">
+          <a href="salon">register your salon</a>
+          {% comment %} <a href="">App guide</a> {% endcomment %}
+          <a href="logout">logout</a>
+        </div>
+    </div>
+</ul>
+<section style="margin-top:2rem;">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input id="searchbar" type="text" name="search" placeholder="Search Salon..." style="width:50vw;">
+        <button type="submit" class="btn">Search</button>
+    </form>
+    <h4>No User profile For User as at Now the System still under going some Testings</h4>
+</section>
+{% endblock  %}

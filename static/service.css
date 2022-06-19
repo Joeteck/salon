@@ -1,0 +1,106 @@
+ .service_container{
+    width: 90%;
+    margin: 0 15px;
+    text-align: left;
+    align-items: none;
+    background: var(--white);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    box-shadow: 2px 0px 4px 0px #888888;
+
+    /* height: 5rem; */
+}
+.salondetails{
+    padding: 10px 10vw;
+    top: 55px;
+    position: relative;
+    line-height: 1.4;
+    /* background: var(--color1); */
+}
+.call i{
+    float: right;
+}
+.servicedetails i, .salondetails i{
+    font-size: 10px;
+}
+.favoritesalon{
+    text-align: right;
+    font-size: 14px; 
+    margin-top:20px;
+    display: none;
+}
+#book {
+    display: block;
+    opacity: 0;
+    right: 20px;
+    overflow:hidden;
+    position: fixed;
+    z-index: 10;
+    bottom: 6rem;
+    text-align: center;
+    align-items: center;
+}
+#icon2{
+    display: none;
+}
+#icon1{
+    display: block;
+}
+
+.shopdetails_container{
+    border-bottom: 10px solid rgb(255, 253, 249);
+    margin-left: 30px;
+    margin-bottom: 0;
+}
+.servicedetails_container{
+    border-bottom: 1px solid rgb(255, 253, 249);
+    margin-left: 30px;
+}
+.bookingform{
+    display: block;
+    position: absolute;
+    top: 5vh;
+    right: 15px;
+    height: 85%;
+    width: 90%;
+    left: 5vw;
+    padding: 20px;
+    align-items: center;
+    border-radius: 20px;
+    z-index: -10;
+    opacity: 0;
+    background-color: #b8c0ff;
+}
+form{
+    width: 100%;
+    margin-bottom: 0;
+}
+.form-form{
+    text-align: left;
+    display: inline-block;
+}
+input, select {
+    font-size: 16px;
+width: fit-content;
+height: 40px;
+padding: 10px 20px;
+margin: 2px 0;
+display: inline-block;
+border: 1px solid #ccc;
+border-radius: 4px;
+box-sizing: border-box;
+}
+.form-btn{
+    width: 100%;
+}
+.form-btn .btn{
+    width: 200px;
+    margin-left: 15vw;
+}
+label{
+font-size: 16px;
+}
+option{
+    font-size: 16px;
+}

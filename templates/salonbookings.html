@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Booking History{% endblock  %}
+{% block header %}
+{% static 'register.css'%}
+{% endblock  %}
+{% block body %}
+<ul class="navbar topnavbar">
+    <div class="dropdown">
+        <button class="dropbtn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+        <div class="dropdown-content">
+          <a href="">App guide</a>
+          <a href="login">logout</a>
+        </div>
+    </div>
+    <li class="nav-item"><a href="salonprofile"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+    <li class="nav-item"><a href="nofity"><i class="fa-solid fa-bell"></i></a></li>
+</ul>
+
+<ul class="navbar bottomnavbar">
+    <li class="nav-item"><a href="salondashboard"><i class="fa-solid fa-house"></i>Home</a></li>
+    <li class="nav-item"><a href="salonbookings"><i class="fa-solid fa-book"></i>Bookings</a></li>
+    <li class="nav-item"><a href="salonprofile"><i class="fa-solid fa-user"></i>Profile</a></li>
+</ul>
+<section>
+    {% comment %} {% for book in data %} {% endcomment %}
+    <div class="container bookings_container" style="gap:40%;">
+        <div class="salondetails">
+            <h3>Customer Name:{{book.userid.username}}</h3>
+            <h4>Contact: {{book.userid.contact}}</h4>
+            <h4>Service Name {{book.serviceid.servicename}}</h4>
+            <h4>Number of People {{book.numberofpeople}}</h4>
+            <h4>Service Name {{book.date}}</h4>
+
+            {% if book.approved == False %}
+        <div class="favoritesalon">
+            <div class="dropdown">
+                <button class="dropbtn">Pending</i></button>
+                <div class="dropdown-content" style="font-size:20px;">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <h4>approve<input type="checkbox" name="check" value="book.userid" style="width: 20px; height:20px;"></h4>
+                        <button class="btn" type="submit">Approve</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="favoritesalon">
+            <div class="dropdown">
+                <button class="dropbtn">Approved</i></button>
+                
+                <div class="dropdown-content" style="font-size:20px;">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <h4>approve<input type="checkbox" checked="checked" name="check" value="book.userid" style="width: 20px; height:20px;"></h4>
+                        <button class="btn" type="submit" style="width: fit-content;">Unapprove</button>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+        {% endif %}
+       
+        </div>
+    </div>
+    <div class="container bookings_container" style="gap:40%;">
+        <div class="salondetails">
+            <h3>Customer Name:{{book.userid.username}}</h3>
+            <h4>Contact: {{book.userid.contact}}</h4>
+            <h4>Service Name {{book.serviceid.servicename}}</h4>
+            <h4>Number of People {{book.numberofpeople}}</h4>
+            <h4>Service Name {{book.date}}</h4>
+
+            {% if book.approved == False %}
+        <div class="favoritesalon">
+            <div class="dropdown">
+                <button class="dropbtn">Pending</i></button>
+                <div class="dropdown-content" style="font-size:20px;">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <h4>approve<input type="checkbox" name="check" value="book.userid" style="width: 20px; height:20px;"></h4>
+                        <button class="btn" type="submit">Approve</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="favoritesalon">
+            <div class="dropdown">
+                <button class="dropbtn">Approved</i></button>
+                
+                <div class="dropdown-content" style="font-size:20px;">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <h4>approve<input type="checkbox" checked="checked" name="check" value="book.userid" style="width: 20px; height:20px;"></h4>
+                        <button class="btn" type="submit" style="width: fit-content;">Unapprove</button>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+        {% endif %}
+       
+        </div>
+    </div>
+
+    {% comment %} {% endfor %} {% endcomment %}
+    
+</section>
+{% endblock %}

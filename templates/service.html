@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+<link rel="stylesheet" type="" href="{% static 'service.css' %}">
+{% endblock  %}
+{% block body %}
+{% include 'topnav.html' %}
+{% include 'bottomnav.html' %}
+<div class="button_container" id="book">
+    <button class="btn" type="button" onclick="booktoggle()">Book</button>
+</div>
+<div>
+    <div class="salondetails">
+        <div class="call"><a><i class="fa-solid fa-phone" style="font-size: 24px;"></i></a></div>
+        <h3>{{service.salonid.salonname}}Salonaname</h3>
+        <h4>{{service.salonid.salonaddress}}</h4>
+        {% comment %} <i class="fa-solid fa-star"></i>
+        <i class="fa-regular fa-star"></i><br> {% endcomment %}
+    </div>
+</div>
+
+<section>
+    <h3>Our Services</h3>
+    {% if service %}
+    {% for services in service %}
+    <div class="service_container" onclick="toggleClock()">
+        <img src="{{image}}" alt="">
+        <div class="servicedetails">
+            <h3>{{services.servicename}}</h3>
+            <h5>GHC{{services.price}}<i class="fa-solid fa-clock"></i></h5>
+            <p>{{sevices.description}}</p>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+        </div>
+        {% comment %} <div class="favoritesalon">
+            <div id="icon1">
+                <i class="fa-solid fa-plus"  ></i>
+            </div>
+            <div id="icon2">
+                <i class="fa-solid fa-check"></i>
+            </div>
+        </div> {% endcomment %}
+    </div>
+    {% endfor %}
+    {% else %}
+    {% for message in messages %}
+        <h3 style="color: #DE1E2B;">{{message}}</h3>
+    {% endfor %}
+    {% endif %}
+
+
+    <div class="bookingform" id="bookingform">
+        <h2>Book Appiontment</h2>
+        <div class="container shopdetails_container">
+            <div class="shopdetails">
+                <h3>{{salonname}}</h3>
+                <p>{{address}}</p>
+            </div>
+        </div>
+        <div class="container servicedetails_container">
+            <div class="servicedetails">
+                <div>
+                <i class="fa-solid fa-multiple"></i></div>
+                <h3>{{servicename}}</h3>
+                <p>{{description}}</p>
+            </div>
+        </div>
+        <form action="" method="">
+            <div class="form-form">
+                {% comment %} <h3>Slots</h3>
+                <select id="stamp" name="stamp">
+                    <option value="9:00am">9:00am</option>
+                    <option value="12:00pm">12:00pm</option>
+                    <option value="1:00pm">1:00pm</option>
+                </select> {% endcomment %}
+                <label for="">Number of People<input type="number" name="numberofpeople" id="" style="width: 4rem;"></label><br>
+                <label for="">Time<input type="time" name="time" id=""></label>
+                {% comment %} {{ forms }} {% endcomment %}
+            </div>
+            <div class="form-btn">
+                <button class="btn " type="submit">Confirm booking</button>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock  %}
+{% block scriptbottom %}
+<script>
+    function toggleClock() {
+        var book = document.getElementById('book');
+        if (book.style.opacity == 0 ) {
+        // clock is visible. hide it
+        book.style.opacity = 1 ;
+        }
+        else{
+        book.style.opacity = 0;
+        }    
+    }
+    function booktoggle(){
+        var form = document.getElementById('bookingform')
+        if(form.style.opacity == 0){
+            form.style.opacity = 1 ;
+            form.style.zIndex = 11;
+        }
+        else{
+            form.style.display = 'none';
+        }
+    }
+</script>
+{% endblock  %}

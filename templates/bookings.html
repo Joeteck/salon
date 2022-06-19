@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Booking History{% endblock  %}
+{% block header %}
+{% comment %} {% static 'register.css'%} {% endcomment %}
+{% endblock  %}
+{% block body %}
+{% include 'topnav.html' %}
+{% include 'bottomnav.html' %}
+<section>
+    {% for data in data %}
+    <div class="container bookings_container">
+        <div class="salondetails">
+            <h3>{{data.serviceid.salonid.salonname}}</h3>
+            <h4>{{data.serviceid.servicename}}</h4>
+            <h6>{{data.date}}</h6>
+        </div>
+        <div class="favoritesalon">
+            <i class="fa-solid"></i>
+            <h4>GHS{{data.amount}}</h4>
+            <h4>Status:
+                {% if data.approved == True %}
+                <h5>Approved</h5>
+                {% else %}
+                <h5>Pending</h5>
+                {% endif %}
+            </h4>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+{% include 'bottomnav.html' %}
+
+<section>
+    {% if user.is_authenticated %}
+    <div class="container profile_container">
+        <form action="" methods="POST">
+            <img src="static/assets/bg4.jpg" alt="">
+            {% comment %} <input type="" name="" > {% endcomment %}
+        </form>
+
+        <div>
+            <h4>Name:</h4>
+            <h3>{{user.username}}</h3>
+        </div>
+        
+        <div>
+            <h4>Phone Number:</h4>
+            <h3>{{user.contact}}</h3>
+        </div>
+        <div>
+            <h4>E-mail:</h4>
+            <h3>{{user.email}}</h3>
+        </div>
+        <div>
+            <h4>D.O.B:</h4>
+            <h3>{{user.birthdate}}</h3>
+        </div>
+    </div>
+    {% else %}
+    <h3> No User profile For User as at Now the System still under going some Testings</h3>
+    {% endif %}
+</section>
+{% endblock  %}

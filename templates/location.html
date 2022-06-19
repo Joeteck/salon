@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Location{% endblock  %}
+{% block header %}
+<link rel="stylesheet" href="{% static 'location.css' %}">
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDt2PsxGOpwtt3hHtCqHd_UlZjtmWiMrL0&callback=initMap"></script>
+{% endblock  %}
+{% block body %}
+<div class="google_map">
+  <div class="form-group">
+  </div>
+  <div class="map_container" id="map"></div>
+  <div class=" map_button">
+      <input type="text" class="form-control" id="search_input" placeholder="Select your Location" />
+      <span>
+          <i class="fa-solid fa-location-dot"></i>
+          <h2>State</h2>
+          <h3>City and Street</h3>
+      </span>
+      <div class="location_btn">
+          <button class="btn">Confrim Location</button>
+      </div>
+  </div>
+</div>
+{% endblock  %}
+
+{% block scriptbottom %}
+<script>
+    x = navigator.geolocation;
+    x.getCurrentPosition(success, failure);
+
+  function success(position){
+    var myLat = position.coords.latitude;
+    var myLong = position.coords.longitude;
+
+    var coords = new google.maps.LatLng(myLat,myLong);
+
+    var mapOptions =  {
+      zoom:18,
+      center: coords,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+
+    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    var marker = new google.maps.Maker({map:map, position:coords});
+  }
+  function failure(){}
+  
+  $(document).ready(function () {
+      var autocomplete;
+      autocomplete = new google.maps.places.Autocomplete((document.getElementById('search_input')), {
+      types: ['geocode'],
+      componentRestrictions: {
+      country: "GHANA"
+    }
+  });
+    
+  google.maps.event.addListener(autocomplete, 'place_changed', function () {
+      var near_place = autocomplete.getPlace();
+  });
+  });
+</script>
+{% endblock  %}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="static/style.css" {% static 'register.css' %}>
+    <link rel="stylesheet" href="static/selectsalon.css" {% static 'register.css' %}>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/fontawesome.min.css" integrity="sha512-xX2rYBFJSj86W54Fyv1de80DWBq7zYLn2z0I9bIhQG+rxIF6XVJUpdGnsNHWRa6AvP89vtFupEPDP8eZAtu9qA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://kit.fontawesome.com/de550cf732.js" crossorigin="anonymous"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDt2PsxGOpwtt3hHtCqHd_UlZjtmWiMrL0&callback=initMap"></script>
+
+    <!--=============================================google font==================================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <style>
+       
+    </style>
+</head>
+<body>
+
+    <ul class="navbar topnavbar">
+        <li class="nav-item"><a href=""><i class="fa-solid fa-ellipsis-vertical"></i></a></li>
+        <li class="nav-item"><a href="search"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+        <li class="nav-item"><a href=""><i class="fa-solid fa-bell"></i></a></li>
+    </ul>
+    <ul class="navbar bottomnavbar">
+        <li class="nav-item"><a href="home.html"><i class="fa-solid fa-house"></i>Home</a></li>
+        <li class="nav-item"><a href="bookings.html"><i class="fa-solid fa-book"></i>Bookings</a></li>
+        <li class="nav-item"><a href="profile.html"><i class="fa-solid fa-user"></i>Profile</a></li>
+      </ul>
+        <div class="map_container" id="map"></div>
+        <div class="container">
+            <div class="salonimage">
+                <img src="" alt="">
+            </div>
+            <div class="salondetails">
+                <h3>Salon Name</h3>
+                <h4>Salon Address</h4>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i><br>
+                <button class="btn">View Services</button>
+
+            </div>
+            <div class="favoritesalon">
+                <a href=""><i class="fa-solid fa-xmark"></i></a>
+            </div>
+        </div>
+
+    <!-- jQuery -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+<script>
+    x = navigator.geolocation;
+  x.getCurrentPosition(success, failure);
+  
+  function success(position){
+    var myLat = position.coords.latitude;
+    var myLong = position.coords.longitude;
+  
+    var coords = new google.maps.LatLng(myLat,myLong);
+  
+    var mapOptions =  {
+      zoom:18,
+      center: coords,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+  
+    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    var marker = new google.maps.Maker({map:map, position:coords});
+  }
+  function failure(){}
+   
+  $(document).ready(function () {
+      var autocomplete;
+      autocomplete = new google.maps.places.Autocomplete((document.getElementById('search_input')), {
+      types: ['geocode'],
+      componentRestrictions: {
+      country: "GHANA"
+    }
+  });
+    
+   google.maps.event.addListener(autocomplete, 'place_changed', function () {
+      var near_place = autocomplete.getPlace();
+   });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+<link rel="stylesheet" href="{% static 'preloader.css'%}">
+{% endblock  %}
+{% block preloader %}
+<div id="overlayer"></div>
+<div class="preloader">
+    <div class="loader">
+        <span class="loader-inner"></span>
+    </div>
+    <h1>Salons</h1>
+</div>
+{% endblock  %}
+{% block body %}
+<section>
+    <div class="container register_container">
+        <h1>Register/Login</h1>
+        <p>Register using your credentails or<br>Login if account already created</p>
+        <div class="button">
+            <button class="btn login_btn" onclick="location.href='login'">Login</button>
+            <button class="btn register_btn" onclick="location.href='register'">Register</button>
+        </div>
+        <div class="icons">
+            <hr>
+            <span class="icon">
+                <a href=""><i class="fa-brands fa-google"></i></a>
+                <a href=""><i class="fa-brands fa-facebook-f"></i></a>
+                <a href=""><i class="fa-solid fa-envelope"></i></a>
+            </span>
+        </div>
+        
+    </div>
+</section>
+{% endblock  %}
+{% block scriptbottom %}
+    <!-- jQuery -->
+
+{% endblock  %}

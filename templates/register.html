@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+<link rel="stylesheet" href="{% static 'register.css' %}">
+{% endblock  %}
+{% block title %}Register{% endblock  %}
+{% block body %}
+<section>
+            
+    <div class="container form_container">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="form-header">
+                <h2>Welcome.</h2>
+                <h3>Please enter your details to get started</h3>
+                {% for message in messages %}
+                <h6 style="color: #DE1E2B;">{{message}}</h6>
+                {% endfor %}
+            </div>
+            <div class="form-form">
+                <input name="contact" type="tel" placeholder="phone number">
+                <input name="username" type="text" placeholder="Username">birthdate
+                <input name="birthdate" type="date" placeholder="birthdate">
+                <input name="email" type="email" placeholder="E-mail">
+                <input name="password" type="password" placeholder="Password">
+                <input name="confirmpassword" type="password" placeholder="Confirm-Password">
+            </div>
+
+            <div class="form-btn">
+                <a href="login" class="login_btn">Login</a>
+                <button class="btn register" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock  %}
