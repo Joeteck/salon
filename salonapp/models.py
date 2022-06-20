@@ -13,7 +13,7 @@ class User(models.Model):
     username = models.CharField('Username',max_length=50, blank=False, unique=True)
     password = models.CharField('Password',max_length=200, blank=False)
     email = models.EmailField('Email',unique=True)
-    image = models.ImageField(upload_to='images', blank=True)
+    image = models.ImageField(upload_to='images', default='default.gif',)
     birthdate = models.DateField()
     contact = models.CharField('Phone Number', max_length=14)
 
@@ -26,7 +26,7 @@ class User(models.Model):
 class Salon(models.Model):
     salonname = models.CharField(max_length=50)
     address = models.CharField(max_length=200)
-    image = models.ImageField(upload_to = 'images', blank=True)
+    image = models.ImageField(upload_to = 'images', default='default.gif',)
     stylistid = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     starttime = models.TimeField()
     closetime = models.TimeField()
@@ -39,7 +39,7 @@ class Service(models.Model):
     servicename = models.CharField(max_length=50)
     description = models.TextField(max_length=200, blank=True)
     price = models.PositiveIntegerField()
-    image = models.ImageField(upload_to = 'images', blank=True)
+    image = models.ImageField(upload_to = 'images', default='default.gif')
     salonid = models.ManyToManyField(Salon)
 
     def __str__(self):

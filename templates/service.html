@@ -21,8 +21,9 @@
 
 <section>
     <h3>Our Services</h3>
+{% comment %} 
     {% if service %}
-    {% for services in service %}
+    {% for services in service %} {% endcomment %}
     <div class="service_container" onclick="toggleClock()">
         <img src="{{image}}" alt="">
         <div class="servicedetails">
@@ -41,12 +42,12 @@
             </div>
         </div> {% endcomment %}
     </div>
-    {% endfor %}
+    {% comment %} {% endfor %}
     {% else %}
     {% for message in messages %}
         <h3 style="color: #DE1E2B;">{{message}}</h3>
     {% endfor %}
-    {% endif %}
+    {% endif %} {% endcomment %}
 
 
     <div class="bookingform" id="bookingform">

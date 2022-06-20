@@ -15,15 +15,11 @@
                 <h2>Welcome.</h2>
                 <h3>Please enter your Salon details to get started</h3>
                 {% for message in messages %}
-                {% if message.tag == 'success' %}
-                    <h6 style="color: #DE1E2B;">{{message}}</h6>
-                {% else %}
-                {% endif %}
+                <h6 style="color: #DE1E2B;">{{message}}</h6>
                 {% endfor %}
             </div>
-            <div style="width:80vw; text-align:left;">
-                {{ form.as_p }}
-            </div>
+            {{form}}
+
             <div class="form-btn">
                 {% comment %} <a href="login" class="login_btn">Login</a> {% endcomment %}
                 <button class="btn register" type="submit">Submit</button>

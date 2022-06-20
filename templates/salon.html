@@ -18,8 +18,8 @@
                 <h6 style="color: #DE1E2B;">{{ message }}</h6>
                 {% endfor %}
             </div>
-            <div style="width:80vw; text-align:left;">
-                {{ form.as_p }}
+            <div style="width:80vw; align-item:none; text-align:left;">
+                {{ from }}
             </div>
             <div class="form-btn">
                 <button class="btn register" type="submit">Submit</button>
@@ -37,7 +37,8 @@
     </div>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
-        swal("Perfect !", "success")
+        var message = {{ message }};
+        swal("Perfect !", m, "success")
     </script>
 </section>
 {% endblock  %}

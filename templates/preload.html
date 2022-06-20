@@ -3,7 +3,7 @@
 {% block header %}
 <link rel="stylesheet" href="{% static 'preloader.css'%}">
 {% endblock  %}
-{% block preloader %}
+{% block body %}
 <div id="overlayer"></div>
 <div class="preloader">
     <div class="loader">
@@ -11,9 +11,9 @@
     </div>
     <h1>Salons</h1>
 </div>
-{% endblock  %}
-{% block body %}
 <section>
+    
+
     <div class="container register_container">
         <h1>Register/Login</h1>
         <p>Register using your credentails or<br>Login if account already created</p>
@@ -35,5 +35,10 @@
 {% endblock  %}
 {% block scriptbottom %}
     <!-- jQuery -->
-
+<script>
+        $(window).load(function() {
+        $(".preloader").delay(3000).fadeOut("slow");
+        $("#overlayer").delay(3000).fadeOut("slow");
+        })
+     </script>
 {% endblock  %}
