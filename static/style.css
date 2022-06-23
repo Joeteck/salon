@@ -2,6 +2,7 @@
 body{
     font-family: 'Inter', sans-serif;
     line-height: 1.7;
+    background: url('assets/item.png');
     background:linear-gradient(0deg, #031016a4, rgba(1, 9, 14, 0.678)), url('assets/div.jpg');
     background-size:300%;
     width: 100%;
@@ -38,6 +39,7 @@ body{
     --transition: all 400ms ease;
 }
 section{
+    background: none;
     padding-top: 2rem;
     margin: 2rem 0 6rem 0;
     align-items: center;
@@ -47,9 +49,8 @@ section{
     width: var(--container_width-lg);
     margin: 5px auto;
     padding: 5px;
-    box-shadow: 2px 0px 4px 0px #888888;
     border-radius: 2px;
-    background: var(--white);
+    background: transparent;
 }
 .bookings_container{
     display: flex;
@@ -70,11 +71,11 @@ h2{
     font-family: 'Patrick Hand', cursive;
 }
 h3{
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-family: 'Patrick Hand', cursive;
 }
 h4{
-    font-size: 1.2rem;
+    font-size: 1.4rem;
 }
 p{
     line-height: 1.2;
@@ -120,19 +121,17 @@ i{
 
 }
 .bottomnavbar{
-    background-color: rgb(255, 255, 255);
+    background-color: none;
     position: fixed;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    box-shadow: 2px -4px 4px -3.5px #888888;
-    list-style-type: none;
     overflow:hidden;
     align-items: center;
     text-align: center;
     width: 40%;
-    margin: 0;
+    margin-left: 20vw;
     padding: 0;
-    bottom: 91.5vh;
+    top: 0vh;
     gap: 0;
     font-size: 10px;
     z-index: 11;
@@ -141,7 +140,6 @@ i{
 li {
     float: right;
 }
-
 li a {
     display: block;
     text-align: center;
@@ -155,16 +153,6 @@ li a {
     margin-top: 50px;
     height: 70vh;
     background: var(--btn_black);
-}
-.form-group{
-    position: fixed;
-    top: 4rem;
-    display: flex;
-    align-items: center;
-    width: 20rem;
-}
-.form-group label{
-    color: var(--font_color);
 }
 .bottomnavbar li{
     float:none;
@@ -195,14 +183,26 @@ li a {
 .profile_container h3{
     padding: 5px 0;
 }
-
-.form_container{
+.form-group{
+    position: fixed;
+    top: 4rem;
+    display: flex;
+    align-items: center;
     width: 20rem;
+}
+.form-group label{
+    color: var(--font_color);
+}
+.form_container{
+    width:70vw;
     background-color: transparent;
     box-shadow: none;
 }
 .form{
     margin-top: 10vh;
+}
+label{
+    color: var(--color1);
 }
 input{
     border-bottom: 1px solid var(--font_color);
@@ -226,7 +226,6 @@ form{
     flex-direction: column;
     padding: 2rem;
 }
-
 .form-btn{
     padding: 0 20px;
     position: relative;
@@ -241,7 +240,6 @@ form{
     font-size: 1.2rem;
     width: 100%;
 }
-
 .swal-text{
     text-align: center;
 }
@@ -304,22 +302,29 @@ form{
         line-height: 1.4;
     }
     h1{
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
     h2{
-        font-size: 1.8rem;
-    }
-    h3{
         font-size: 1.4rem;
     }
+    h3{
+        font-family: 'Inter', sans-serif;
+        font-size: 1.2rem;
+        color:beige;
+    }
     h4{
-        font-size: 1.3rem;
+        font-size: 1rem;
     }
     .container{
+        background: transparent;
         width: var(--container_width-sm);
         padding: 10px;
     }
     .bottomnavbar{
+        background: var(--color1);
+        bottom: 91.5vh;
+        top: 91.5vh;
+        margin-left: 0;
         width: 100%;
         bottom: 0;
     }

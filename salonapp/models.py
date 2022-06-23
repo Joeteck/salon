@@ -1,4 +1,5 @@
 # Create your models here.
+from email.policy import default
 from django.db import models
 from django.urls import reverse
 # Create your models here.
@@ -20,13 +21,10 @@ class User(models.Model):
     def __str__(self):
         return self.username
 
-    def get_absolute_url(self):
-        return reverse('post-detail', kwargs={'pk': self.pk})
-
 class Salon(models.Model):
     salonname = models.CharField(max_length=50)
     address = models.CharField(max_length=200)
-    image = models.ImageField(upload_to = 'images', default='default.gif',)
+    image = models.ImageField(upload_to = 'images', default='default.gif')
     stylistid = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     starttime = models.TimeField()
     closetime = models.TimeField()

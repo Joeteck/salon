@@ -17,7 +17,6 @@ class AddSalonForm(ModelForm):
     class Meta:
         model = Salon
         fields = ['salonname', 'address', 'starttime', 'closetime']
-
         widgets = {
             'starttime' : TimePickerInput(),
             'closetime' : TimePickerInput(),

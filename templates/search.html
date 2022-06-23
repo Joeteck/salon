@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block header %}
+    <link rel="stylesheet" type="" href="{% static 'salon.css' %}">
+{% endblock  %}
 {% block body %}
 {% include 'bottomnav.html' %}
 <ul class="navbar topnavbar">
@@ -19,6 +22,34 @@
         <input id="searchbar" type="text" name="search" placeholder="Search Salon..." style="width:50vw;">
         <button type="submit" class="btn">Search</button>
     </form>
-    <h4>No User profile For User as at Now the System still under going some Testings</h4>
+    {% if search %}
+    <div>
+    <h3>Result for {{ search }}</h3>
+    {% for message in messages %}
+        <h5 style="color:;">{{message}}{{ search }}!</h5>
+    {% endfor %}
+    </div>
+    {% for salon in data %}
+
+    <div class="container" onclick="location.href='service'">
+        <div class="salonimage">
+        {% if salon.image %}
+        <img src="{{ salon.image.url }}" alt="">
+        {% else %}
+        {% endif %}
+        </div>
+        <div class="salondetails">
+            <h3>{{salon.salonname}}</h3>
+            <h5>{{salon.address}}</h5>
+            <h5>{{salon.stylistid.contact}}</h5>
+        </div>
+        <span style="position:relative; margin:0;padding:0;right:0;">
+        <h1>⌚</h1>
+        <h5>{{salon.starttime}} {{salon.closetime}}</h6>
+        </span>
+    </div>
+    {% endfor %}
+    {% else %}
+    {% endif %}
 </section>
 {% endblock  %}

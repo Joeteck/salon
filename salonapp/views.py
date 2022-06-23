@@ -1,10 +1,11 @@
+from multiprocessing import current_process
 import re
 from django.shortcuts import render, get_object_or_404, redirect
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib.auth import authenticate, logout, login
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import make_password, mask_hash
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -55,28 +56,30 @@ def register(request):
 # in django_blogs/settings.py
 
 def login(request):
-
     if request.method == 'POST':
         username = request.POST['username']
-        p = request.POST['password']
-        password = make_password(p)
-        
-        if  username==username and password==password:
-            auth.login(request, User)
+        password = request.POST['password']
+
+        user = auth.authenticate(username=username, password=password)
+
+        if user is not None:
+            auth.login(request, user)
             return redirect('home')
+
         else:
             messages.info(request, 'Username or Password is not correct... Please try again')
         return redirect('login')
     else:
         return render(request, 'login.html')
-
 def logout(request):
-    logout(request)
+    auth.logout(request)
     return redirect('/')
 
 def service(request):
     
-    service = Service.objects.all()
+    current_salon = request.Salon.id
+    print(current_salon)
+    service = Service.objects.get().current_salon
     # if request.method == 'POST':
     #     date = request.POST['time']
     #     numberofpeople = request.POST['numberofpeople']
@@ -104,19 +107,31 @@ def service(request):
 
 def bookings(request):
     context = {}
-    bookings = Booking.objects.filter(userid=request.user.id)
+    # bookings = Booking.objects.filter()
+    current_user = request.user.id
+    print(current_user)
     if len(bookings)>0:
-        data = Booking.objects.get(userid=request.user.id)
+        data = Booking.objects.get().userid.cu
         context["data"] = data
     return render(request, 'bookings.html', context)
 
 def search(request):
-    context = {}
-    bookings = Salon.objects.filter()
-    if len(bookings)>0:
-        data = Booking.objects.get(userid=request.user.id)
-        context["data"] = data
-    return render(request, 'search.html', context)
+    current_user = request.user
+    print(current_user.id)
+    if request.method == 'POST':
+        search = request.POST['search']
+        data = Salon.objects.filter(salonname__icontains=search)
+        print(data)
+        if data:
+            return render(request, 'search.html', {
+                'data':data,
+                'search':search
+                })
+        else:
+            messages.info(request, f'We couldn''t find any salon ')
+            return redirect('search')
+    else:
+        return render(request, 'search.html',{})
 
 def profile(request):
     # profile = User.objects.get(username=username){'profile' : profile}
@@ -134,22 +149,22 @@ def rate(request):
         return render(request, 'rate.html')
 
 def salon(request):
-    current_user = User.objects.get()
-    print(current_user)
     # x = Salon.objects.filter(id__exact=current_user).update()
     form = AddSalonForm()
+    current_user= request.user.id
     if request.method == "POST":
         form = AddSalonForm(request.POST)
         if form.is_valid():
             try:
-                form.save()
+                salon= Salon.objects.create(form, stylistid=current_user)
+                salon.save()
                 messages.success(request, 'You''ve Added your Salon... You can now add your Services.')
                 return redirect('newservice')
             except:
-                # pass
-        # else:
-                messages.info(request, 'There is an issue with one of the fields please make sure you correctly fill the fields')
-                return redirect('salon')
+                pass
+        else:
+            messages.info(request, 'There is an issue with one of the fields please make sure you correctly fill the fields')
+            return redirect('salon')
     else:
         return render(request, 'salon.html', {'form':form})
     # if request.method == 'POST':
@@ -171,6 +186,8 @@ def salon(request):
 
 def newservice(request):
     form = AddServiceForm()
+    current_salon= request.Salon.id
+    print(current_salon)
     if request.method == "POST":
         form = AddServiceForm(request.POST)
         if form.is_valid():
@@ -184,17 +201,19 @@ def newservice(request):
             messages.info(request, 'There is an issue with one of the fields please make sure you correctly fill the fields')
             return redirect('newservice')
     else:
+        print(current_salon)
         return render(request, 'newservice.html', {'form':form})
 
 def salondashboard(request):
     return render(request, 'salondashboard.html')
 
 def salonprofile(request):
+    
     return render(request, 'salonprofile.html')
 
 def salonbookings(request):
-    bookings = Booking.objects.filter(salonid=request.salon.id).order_by('-date')
-    data = Booking.objects.get(salonid=request.salon.id)
+    bookings = Booking.objects.filter().order_by('date')
+    data = Booking.objects.get()
 
     if request.method =="POST":
         id = request.POST.getlist('check')

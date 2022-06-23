@@ -27,11 +27,12 @@ Dashboard
     {% for salon in salons %}
     <div class="container" onclick="location.href='service'">
         <div class="salonimage">
-            <img src="{{salon.image}}" alt="">
+            <img src="{{ salon.image.url}}" alt="">
+            
         </div>
         <div class="salondetails">
             <h3>{{salon.salonname}}</h3>
-            <h4>{{salon.address}}</h4>
+            <h5>{{salon.address}}</h5>
             {% comment %} {% for x in randrange(1,)  %}
             <i class="fa-solid fa-star"></i>
             {% endfor %} {% endcomment %}

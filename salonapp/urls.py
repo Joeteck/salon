@@ -17,5 +17,5 @@ urlpatterns = [
     path('salonbookings', views.salonbookings, name='salonbookings'),
     path('newservice', views.newservice, name='newservice'),
     path('logout', views.logout, name='logout'),
-    path('search', views.search, name='search')
+    path('search', views.search, name='search'),
 ]
